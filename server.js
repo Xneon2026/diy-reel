@@ -21,7 +21,10 @@ const DEFAULT_YT_QUERIES = {
   cricut: ['cricut project', 'cricut tumbler', 'vinyl decal tutorial', 'cricut svg'],
   home: ['diy home improvement', 'shiplap', 'tile backsplash diy'],
   wood: ['woodworking project beginner'],
-  crafts: ['diy crafts', 'resin craft']
+  crafts: ['diy crafts', 'resin craft'],
+  recipes: ['easy dinner recipes', 'family meals', 'sheet pan dinner', 'crockpot slow cooker recipes', 'one pot meals', '30 minute dinner recipes'],
+  mealplan: ['weekly meal plan', 'family weekly meal plan', 'meal planning on a budget', '7 day meal plan', 'how to meal plan for the week', 'grocery haul meal plan'],
+  mealprep: ['budget meal prep', 'healthy meal prep for the week', 'high protein meal prep', 'meal prep sunday', 'beginner meal prep lunches', 'chicken meal prep bowls']
 };
 
 // ---- YouTube API key: env or .youtube_key, never logged or sent to the client ----
@@ -75,6 +78,9 @@ const CRICUT_RE = /\b(cricut|vinyl|htv|iron[- ]on|sublimation|decal|silhouette c
 const HOME_RE = /\b(shiplap|backsplash|tile|drywall|home improvement|home reno|renovation|baseboard|wainscot|framing a)\b/i;
 const WOOD_RE = /\b(woodwork|cutting board|joinery|table saw|tablesaw|router table|hardwood|charcuterie|beginner wood)\b/i;
 const CRAFTS_RE = /\b(resin|diy craft|crafts? project|scrapbook|polymer clay|embroidery)\b/i;
+const MEALPREP_RE = /\b(meal prep|meal-prep|mealprep|prep(?:ped)? meals|lunch prep|sunday meal prep|prep for the week)\b/i;
+const MEALPLAN_RE = /\b(meal plan|meal-plan|mealplan|weekly menu|weekly plan|menu plan|grocery list|plan your meals|7[- ]day meal|meal planning)\b/i;
+const RECIPES_RE = /\b(dinner recipe|easy recipe|healthy recipe|family meal|weeknight dinner|crock[- ]?pot|slow cooker|sheet pan dinner|one[- ]pot (?:dinner|meal)|30[- ]minute (?:dinner|meal)|recipes?)\b/i;
 
 function categorize(text, base) {
   const c = new Set();
@@ -83,6 +89,9 @@ function categorize(text, base) {
   if (HOME_RE.test(text || '')) c.add('home');
   if (WOOD_RE.test(text || '')) c.add('wood');
   if (CRAFTS_RE.test(text || '')) c.add('crafts');
+  if (MEALPREP_RE.test(text || '')) c.add('mealprep');
+  if (MEALPLAN_RE.test(text || '')) c.add('mealplan');
+  if (RECIPES_RE.test(text || '')) c.add('recipes');
   return [...c];
 }
 const tagCats = (base, text) => categorize(text, base);
@@ -92,6 +101,9 @@ function inferCategory(text) {
   if (HOME_RE.test(text || '')) return 'home';
   if (WOOD_RE.test(text || '')) return 'wood';
   if (CRAFTS_RE.test(text || '')) return 'crafts';
+  if (MEALPREP_RE.test(text || '')) return 'mealprep';
+  if (MEALPLAN_RE.test(text || '')) return 'mealplan';
+  if (RECIPES_RE.test(text || '')) return 'recipes';
   return null;
 }
 

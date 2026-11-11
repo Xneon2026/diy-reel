@@ -1,4 +1,4 @@
-const CACHE = 'diyreel-v2';
+const CACHE = 'diyreel-v3';
 const SHELL = [
   '/',
   '/manifest.webmanifest',
