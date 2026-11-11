@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1a1411">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DIY Reel">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>DIY Reel — DIY project videos from everywhere</title>
 <style>
 :root{--bg:#15110e;--panel:#211a15;--panel2:#2b221b;--line:#3a2e25;--text:#f6ece2;--muted:#b9a593;--accent:#ff8a3d;--accent2:#ffc46b;
@@ -122,7 +127,7 @@ new IntersectionObserver(es => es[0].isIntersecting && !$('#more').hidden && ren
 let t; $('#q').oninput = e => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value.trim(); const u = new URL(location.href); if (st.q) u.searchParams.set('q', st.q); else u.searchParams.delete('q'); history.replaceState(null,'',u.pathname + u.search); load(); }, 700); };
 $('#plat').onchange = e => { st.plat = e.target.value; load(); };
 drawTabs(); load();
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(()=>{});
 </script>
 </body>
 </html>

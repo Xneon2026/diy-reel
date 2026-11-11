@@ -521,7 +521,13 @@ async function handle(req, res) {
   if (!f.startsWith(path.join(ROOT, 'public'))) { res.writeHead(403); return res.end(); }
   fs.readFile(f, (err, buf) => {
     if (err) { res.writeHead(404); return res.end('not found'); }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); res.end(buf);
+    const headers = { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' };
+    // Serve the service worker from the site root so it can control the whole app.
+    if (u.pathname === '/sw.js') {
+      headers['Service-Worker-Allowed'] = '/';
+      headers['Cache-Control'] = 'no-cache';
+    }
+    res.writeHead(200, headers); res.end(buf);
   });
 }
 
