@@ -1,0 +1,6 @@
+.youtube_key
+.env
+node_modules/
+
+data/
+screenshots/

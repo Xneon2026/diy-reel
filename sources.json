@@ -1,0 +1,293 @@
+{
+ "categories": {
+  "cricut": "Cricut & Vinyl",
+  "home": "Home Improvement",
+  "wood": "Woodworking",
+  "crafts": "Crafts"
+ },
+ "youtubeSearch": {
+  "cricut": [
+   "cricut project",
+   "cricut tumbler",
+   "vinyl decal tutorial",
+   "cricut svg"
+  ],
+  "home": [
+   "diy home improvement",
+   "shiplap",
+   "tile backsplash diy"
+  ],
+  "wood": [
+   "woodworking project beginner"
+  ],
+  "crafts": [
+   "diy crafts",
+   "resin craft"
+  ]
+ },
+ "youtube": [
+  {
+   "category": "cricut",
+   "name": "Cricut",
+   "channelId": "UCenmvBlGmukLZG0ELpS6mRQ",
+   "handle": "@cricut"
+  },
+  {
+   "category": "cricut",
+   "name": "Jennifer Maker",
+   "channelId": "UCAaLvz5xOyGDQ5Kun16D7zw",
+   "handle": "@JenniferMaker"
+  },
+  {
+   "category": "cricut",
+   "name": "Crafting in the Rain",
+   "channelId": "UCLI8g5uumeENjuHMboaZ8Iw",
+   "handle": "@craftingintheRain"
+  },
+  {
+   "category": "cricut",
+   "name": "Makers Gonna Learn",
+   "channelId": "UCammHPYWYI4q3WLbx-TP7GA",
+   "handle": "@makersgonnalearn"
+  },
+  {
+   "category": "cricut",
+   "name": "Kayla's Cricut Creations",
+   "channelId": "UCU1cHVibkUOz5RTilJ6QygA",
+   "handle": "@kaylascricutcreations"
+  },
+  {
+   "category": "cricut",
+   "name": "Angie Holt",
+   "channelId": "UCdYDokKqvUYaq3fwngq1fHA",
+   "handle": "@AngieHolt"
+  },
+  {
+   "category": "home",
+   "name": "Home RenoVision DIY",
+   "channelId": "UCnorhjQR4zJkT7AVNhu395Q",
+   "handle": "@HomeRenovisionDIY"
+  },
+  {
+   "category": "home",
+   "name": "This Old House",
+   "channelId": "UCUtWNBWbFL9We-cdXkiAuJA",
+   "handle": "@thisoldhouse"
+  },
+  {
+   "category": "home",
+   "name": "Home Repair Tutor",
+   "channelId": "UCP2vaEZS8MvZrFklwBtW1GA",
+   "handle": "@HomeRepairTutor"
+  },
+  {
+   "category": "home",
+   "name": "The Home Depot",
+   "channelId": "UCfB9yx0y0dUwQ0lpjH8R4gA",
+   "handle": "@homedepot"
+  },
+  {
+   "category": "home",
+   "name": "Essential Craftsman",
+   "channelId": "UCzr30osBdTmuFUS8IfXtXmg",
+   "handle": "@essentialcraftsman"
+  },
+  {
+   "category": "home",
+   "name": "See Jane Drill",
+   "channelId": "UCraGaDLfWec67xl9FEPndtw",
+   "handle": "@SeeJaneDrill"
+  },
+  {
+   "category": "wood",
+   "name": "Steve Ramsey - Woodworking for Mere Mortals",
+   "channelId": "UCBB7sYb14uBtk8UqSQYc9-w",
+   "handle": "@SteveRamsey"
+  },
+  {
+   "category": "wood",
+   "name": "Stumpy Nubs",
+   "channelId": "UCstwpLSByklww1YojZN-KiQ",
+   "handle": "@StumpyNubs"
+  },
+  {
+   "category": "wood",
+   "name": "Fix This Build That",
+   "channelId": "UCHYSw4XKO_q1GaChw5pxa-w",
+   "handle": "@fixthisbuildthat"
+  },
+  {
+   "category": "wood",
+   "name": "Bourbon Moth Woodworking",
+   "channelId": "UCQ_bmgSrYsQS0LboA_tZpEw",
+   "handle": "@BourbonMoth"
+  },
+  {
+   "category": "wood",
+   "name": "RickMakes",
+   "channelId": "UCmgQ_RCHX_zhOwSGpw9Kmcw",
+   "handle": "@RickMakes"
+  },
+  {
+   "category": "crafts",
+   "name": "DaveHax",
+   "channelId": "UC0rDDvHM7u_7aWgAojSXl1Q",
+   "handle": "@DaveHax"
+  },
+  {
+   "category": "crafts",
+   "name": "TheSorryGirls",
+   "channelId": "UCSJWlswfVUgyVliZaEFoaBw",
+   "handle": "@TheSorryGirls"
+  },
+  {
+   "category": "crafts",
+   "name": "Hey Let's Make Stuff",
+   "channelId": "UCnS8r33_sRpWqiKyb0WtKIg",
+   "handle": "@heyletsmakestuff"
+  },
+  {
+   "category": "crafts",
+   "name": "CraftKlatch",
+   "channelId": "UCSHBQTCb9NCIHyliT3xZ7Fg",
+   "handle": "@craftklatch"
+  },
+  {
+   "category": "crafts",
+   "name": "CraftyChica",
+   "channelId": "UC-tGTRy0__Pe_puAA1oUi6g",
+   "handle": "@CraftyChica"
+  },
+  {
+   "category": "crafts",
+   "name": "Stacy Risenmay",
+   "channelId": "UCA_Vz7yrrzEeEbsVClpTpNg",
+   "handle": "@StacyRisenmay"
+  }
+ ],
+ "reddit": [
+  {
+   "category": "cricut",
+   "subreddit": "cricut"
+  },
+  {
+   "category": "home",
+   "subreddit": "DIY"
+  },
+  {
+   "category": "home",
+   "subreddit": "HomeImprovement"
+  },
+  {
+   "category": "wood",
+   "subreddit": "woodworking"
+  },
+  {
+   "category": "crafts",
+   "subreddit": "crafts"
+  }
+ ],
+ "embeds": [
+  {
+   "category": "cricut",
+   "url": "https://www.tiktok.com/@luckylittlepennycrafts/video/7305197348664118570",
+   "title": "Step-by-step: applying vinyl with Cricut (beginner tutorial)"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.tiktok.com/@kaylascricutcreations/video/7475421157106224430",
+   "title": "Adding permanent chrome vinyl to a glass can cup — layering with parchment"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.tiktok.com/@wishingstarwarehouse/video/7342700079163133215",
+   "title": "Layering iron-on vinyl step by step"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.tiktok.com/@anny_cricuts_diy/video/7255100732146322734",
+   "title": "Beginner friendly: make your own vinyl wrap for a Libbey glass cup"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.tiktok.com/@jchcreationstumblers/video/7467734103492660522",
+   "title": "Cut multiple colored vinyls on one Cricut mat"
+  },
+  {
+   "category": "crafts",
+   "url": "https://www.tiktok.com/@luckylittlepennycrafts/video/7378904341832338734",
+   "title": "Easy rolled paper flowers with Cricut, step by step"
+  },
+  {
+   "category": "crafts",
+   "url": "https://www.tiktok.com/@artwithm1ya/video/7446521345896189214",
+   "title": "DIY trinket box from paper scraps"
+  },
+  {
+   "category": "home",
+   "url": "https://www.tiktok.com/@j.lewiscarpentry/video/7343347297037700384",
+   "title": "How to hang a door in an existing frame"
+  },
+  {
+   "category": "wood",
+   "url": "https://www.tiktok.com/@man.in.shed/video/7536316490082028822",
+   "title": "Creating a chaotic pattern cutting board"
+  },
+  {
+   "category": "wood",
+   "url": "https://www.tiktok.com/@cicworkshop/video/7571128830711057678",
+   "title": "Cutting boards for Amazon?! Shop build"
+  },
+  {
+   "category": "wood",
+   "url": "https://www.tiktok.com/@jacob.wilder94/video/7562204316962999583",
+   "title": "Walnut and cherry cutting board, mineral oil finish"
+  },
+  {
+   "category": "wood",
+   "url": "https://www.tiktok.com/@makingathome/video/7527651638576696590",
+   "title": "Finishing a walnut charcuterie board with wax"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.instagram.com/reel/DIUfPoJBWro/",
+   "title": "Day 9 of mastering your Cricut: cutting & weeding a vinyl project",
+   "author": "Kelsey S. | Dinosaur Mama"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.instagram.com/reel/C1ad2dcxCRA/",
+   "title": "Quick tutorial: applying vinyl to a mug with your Cricut",
+   "author": "kaylascricutcreations"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.instagram.com/reel/DFCu7EJtuqu/",
+   "title": "How to use A-SUB Sublimation Vinyl with your Cricut",
+   "author": "A-SUB"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.instagram.com/reel/C0udJW8R00i/",
+   "title": "The perfect distressed vinyl technique with your Cricut",
+   "author": "Makers Gonna Learn"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.pinterest.com/pin/6896205674341766/",
+   "title": "Cricut hacks: how to layer vinyl"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.pinterest.com/pin/544654148691473545/"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.pinterest.com/pin/509258670358946554/"
+  },
+  {
+   "category": "cricut",
+   "url": "https://www.pinterest.com/pin/914862420654270/"
+  }
+ ]
+}

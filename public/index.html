@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1a1411">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg">
+<title>DIY Reel — DIY project videos from everywhere</title>
+<style>
+:root{--bg:#15110e;--panel:#211a15;--panel2:#2b221b;--line:#3a2e25;--text:#f6ece2;--muted:#b9a593;--accent:#ff8a3d;--accent2:#ffc46b;
+--yt:#ff3b30;--rd:#ff5700;--tt:#25f4ee;--ig:#e1306c;--pin:#e60023}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#1a1411 85%,#1a141100);padding:14px 18px 10px}
+.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;max-width:1400px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.5px;white-space:nowrap}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:19px}
+.logo small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);letter-spacing:0}
+.search{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.search input{flex:1;background:none;border:0;color:var(--text);font-size:15px;outline:none}
+.search input::placeholder{color:#8a7766}
+select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:14px}
+nav.tabs{display:flex;gap:8px;overflow-x:auto;max-width:1400px;margin:12px auto 0;scrollbar-width:none;padding-bottom:2px}
+nav.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:8px 15px;font-weight:600;cursor:pointer;font-size:14px}
+.tab b{font-weight:500;opacity:.7;margin-left:5px;font-size:12px}
+.tab.on{background:linear-gradient(135deg,var(--accent),#ff6a2b);color:#1a0f07;border-color:transparent}
+main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
+.meta{color:var(--muted);font-size:12.5px;margin:4px 2px 14px}
+.grid{columns:4 300px;column-gap:16px}
+.card{break-inside:avoid;margin:0 0 16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:inline-block;width:100%}
+.media{position:relative;background:#000;width:100%}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.media iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;display:grid;place-items:center;cursor:pointer;background:linear-gradient(180deg,#0000 55%,#000a)}
+.play span{width:58px;height:58px;border-radius:50%;background:#000a;border:2px solid #fff8;display:grid;place-items:center;backdrop-filter:blur(4px);transition:.15s}
+.play:hover span{transform:scale(1.08);background:var(--accent)}
+.play span:after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.poster{position:absolute;inset:0;display:grid;place-items:start center;padding-top:22% !important;text-align:center;padding:20px;font-weight:700;font-size:15px}
+.body{padding:11px 13px 13px}
+.title{font-weight:650;font-size:14.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:6px 0 8px}
+.row{display:flex;align-items:center;gap:8px;justify-content:space-between;color:var(--muted);font-size:12.5px}
+.creator{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.orig{flex:none;text-decoration:none;border:1px solid var(--line);padding:4px 9px;border-radius:999px;color:var(--accent2);font-weight:600}
+.orig:hover{border-color:var(--accent)}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.2px;color:#fff}
+.badge.youtube{background:var(--yt)}.badge.reddit{background:var(--rd)}.badge.tiktok{background:#111;box-shadow:inset 0 0 0 1px var(--tt);color:var(--tt)}
+.badge.instagram{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}.badge.pinterest{background:var(--pin)}
+.badge.cat{background:var(--panel2);color:var(--accent2);border:1px solid var(--line)}
+.empty{color:var(--muted);text-align:center;padding:60px 10px}
+.more{display:block;margin:10px auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:10px 22px;font-weight:600;cursor:pointer}
+@media (max-width:640px){header{padding:10px 12px 8px}main{padding:4px 12px 40px}.logo{font-size:19px}.top{gap:10px}.search{order:3;flex-basis:100%}.grid{columns:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="logo"><div class="mark">🛠️</div><div>DIY Reel<small>Project videos from across social</small></div></div>
+    <label class="search">🔎<input id="q" type="search" placeholder="Search YouTube — cricut tumbler, shiplap, cutting board…" autocomplete="off"></label>
+    <select id="plat" aria-label="Platform">
+      <option value="all">All platforms</option><option value="youtube">YouTube</option><option value="reddit">Reddit</option>
+      <option value="tiktok">TikTok</option><option value="instagram">Instagram</option><option value="pinterest">Pinterest</option>
+    </select>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+<main>
+  <div class="meta" id="meta">Loading…</div>
+  <div class="grid" id="grid"></div>
+  <button class="more" id="more" hidden>Load more</button>
+</main>
+<script>
+const CATS = [['all','All'],['cricut','Cricut & Vinyl'],['home','Home Improvement'],['wood','Woodworking'],['crafts','Crafts']];
+const PLAT = {youtube:'YouTube',reddit:'Reddit',tiktok:'TikTok',instagram:'Instagram',pinterest:'Pinterest'};
+const POSTER = {instagram:'linear-gradient(135deg,#f58529,#dd2a7b,#8134af)',pinterest:'linear-gradient(135deg,#e60023,#8a0015)',youtube:'linear-gradient(135deg,#3a1010,#ff3b30)',reddit:'linear-gradient(135deg,#ff5700,#7a2a00)',tiktok:'linear-gradient(135deg,#111,#25f4ee55)'};
+const params = new URLSearchParams(location.search);
+const st = { cat: params.get('cat') || 'all', q: params.get('q') || '', plat: 'all', items: [], shown: 0 };
+const $ = s => document.querySelector(s);
+$('#q').value = st.q;
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ago = d => { if (!d) return ''; const s = (Date.now() - new Date(d)) / 1000; for (const [n,u] of [[31536000,'y'],[2592000,'mo'],[86400,'d'],[3600,'h'],[60,'m']]) if (s >= n) return Math.floor(s/n)+u+' ago'; return 'just now'; };
+
+async function counts(){ try{ const s = await (await fetch('/api/status')).json(); return s.counts; }catch{ return {}; } }
+async function drawTabs(){
+  const c = await counts();
+  $('#tabs').innerHTML = CATS.map(([k,l]) => `<button class="tab ${k===st.cat?'on':''}" data-k="${k}">${l}<b>${c[k] ?? ''}</b></button>`).join('');
+  $('#tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { st.cat = b.dataset.k; history.replaceState(null,'',st.cat==='all'?'/':'?cat='+st.cat); drawTabs(); load(); });
+}
+function card(it){
+  const cat = it.categories.filter(c => c !== 'all').map(c => CATS.find(x => x[0]===c)?.[1]).filter(Boolean)[0];
+  let media;
+  if (it.thumb) media = `<div class="media" style="aspect-ratio:${it.aspect}"><img loading="lazy" src="${esc(it.thumb)}" alt="" onerror="this.style.display='none'"><div class="play" data-embed="${esc(it.embed)}"><span></span></div></div>`;
+  else if (it.clickToLoad) media = `<div class="media" style="aspect-ratio:${it.aspect}"><div class="poster" style="background:${POSTER[it.platform]}"><div>${esc(PLAT[it.platform])}<div style="font-weight:500;font-size:13px;opacity:.8;margin-top:6px">${esc(it.creator)}</div></div></div><div class="play" data-embed="${esc(it.embed)}"><span></span></div></div>`;
+  else media = `<div class="media" style="aspect-ratio:${it.aspect}"><div class="poster" style="background:${POSTER[it.platform]}">${esc(PLAT[it.platform])}</div><iframe loading="lazy" src="${esc(it.embed)}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen scrolling="no"></iframe></div>`;
+  return `<article class="card">${media}<div class="body">
+    <div class="badges"><span class="badge ${it.platform}">${PLAT[it.platform]}${it.via==='youtube'?' · via YouTube':''}</span>${cat?`<span class="badge cat">${esc(cat)}</span>`:''}</div>
+    <div class="title">${esc(it.title)}</div>
+    <div class="row"><a class="creator" href="${esc(it.creatorUrl||it.url)}" target="_blank" rel="noopener">${esc(it.creator)}${it.published?' · '+ago(it.published):''}</a>
+    <a class="orig" href="${esc(it.url)}" target="_blank" rel="noopener">Open ↗</a></div></div></article>`;
+}
+function render(){
+  const next = st.items.slice(st.shown, st.shown + 24); st.shown += next.length;
+  $('#grid').insertAdjacentHTML('beforeend', next.map(card).join(''));
+  $('#more').hidden = st.shown >= st.items.length;
+}
+async function load(){
+  const p = new URLSearchParams({ cat: st.cat, q: st.q, platform: st.plat });
+  const j = await (await fetch('/api/feed?' + p)).json();
+  st.items = j.items; st.shown = 0; $('#grid').innerHTML = '';
+  $('#meta').textContent = `${j.count} videos · updated ${ago(j.lastRefresh) || '—'} · YouTube cached 6h · other sources refresh every 30 min`;
+  if (!j.items.length) $('#grid').innerHTML = '<div class="empty">No videos match that yet. Try another search.</div>';
+  render();
+}
+$('#grid').addEventListener('click', e => {
+  const p = e.target.closest('.play'); if (!p) return;
+  p.parentElement.innerHTML = `<iframe src="${p.dataset.embed}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+});
+$('#more').onclick = render;
+new IntersectionObserver(es => es[0].isIntersecting && !$('#more').hidden && render()).observe($('#more'));
+let t; $('#q').oninput = e => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value.trim(); const u = new URL(location.href); if (st.q) u.searchParams.set('q', st.q); else u.searchParams.delete('q'); history.replaceState(null,'',u.pathname + u.search); load(); }, 700); };
+$('#plat').onchange = e => { st.plat = e.target.value; load(); };
+drawTabs(); load();
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+</script>
+</body>
+</html>
