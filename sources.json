@@ -315,21 +315,51 @@
     },
     {
       "category": "yard",
-      "name": "The King of DIY",
-      "channelId": "UCM9oZkV3tGJuUUhgZaiGZkQ",
-      "handle": "@TheKingOfDIY"
+      "name": "GrowVeg",
+      "channelId": "UC9r61qohBg1qgGty4_WzojA",
+      "handle": "@GrowVeg"
     },
     {
       "category": "yard",
-      "name": "How To with Doc",
-      "channelId": "UCtpdUcJ3jBHxbkgUzRHuReg",
-      "handle": "@HowToWithDoc"
+      "name": "Self Sufficient Me",
+      "channelId": "UCJZTjBlrnDHYmf0F-eYXA3Q",
+      "handle": "@SelfSufficientMe"
     },
     {
       "category": "yard",
-      "name": "Ready to DIY",
-      "channelId": "UCTrwZobTdhIzcN8_zBYnivw",
-      "handle": "@ReadyToDIY"
+      "name": "GardenFork",
+      "channelId": "UCAh44GRXNB-iB0IWBJ0gGbQ",
+      "handle": "@GardenFork"
+    },
+    {
+      "category": "yard",
+      "name": "The Self-Sufficient Backyard",
+      "channelId": "UClofIC8XMRoGNcbLP1U2OYA",
+      "handle": "@SelfSufficientBackyard"
+    },
+    {
+      "category": "yard",
+      "name": "Mr. Chickadee",
+      "channelId": "UCHkYrJ2Fbe7pBjEZvkFzi3A",
+      "handle": "@MrChickadee"
+    },
+    {
+      "category": "yard",
+      "name": "Garden Answer",
+      "channelId": "UCFCuaylAlpC_5JWdk1nVfDA",
+      "handle": "@GardenAnswer"
+    },
+    {
+      "category": "yard",
+      "name": "The Gardening Channel With James Prigioni",
+      "channelId": "UC9V_-gqJsZNOy4v_HqbRz3w",
+      "handle": "@JamesPrigioni"
+    },
+    {
+      "category": "yard",
+      "name": "Huw Richards",
+      "channelId": "UCe0Ha5QljsCV5UqIkobBrcQ",
+      "handle": "@HuwRichards"
     }
   ],
   "reddit": [

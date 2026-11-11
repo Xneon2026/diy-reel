@@ -44,6 +44,10 @@ function redact(s) {
 
 fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
 
+function readJson(file) {
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return null; }
+}
+
 // ---- persistent cache: last good result per source survives restarts and outages ----
 let cache = { sources: {}, status: {}, lastRefresh: null };
 try { cache = Object.assign(cache, JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'))); } catch {}
@@ -52,8 +56,44 @@ const saveCache = () => fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null,
 function pacificDate() {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
 }
+const YT_SEED_FILE = path.join(ROOT, 'seed', 'yt-cache.json');
 let ytCache = { quotaDate: pacificDate(), quotaUsed: 0, searches: {}, channelsFetchedAt: null, lastRefreshUnits: 0 };
-try { ytCache = Object.assign(ytCache, JSON.parse(fs.readFileSync(YT_CACHE_FILE, 'utf8'))); } catch {}
+// Prefer the bundled seed if the writable data/ cache is missing or thinner
+// (Render's build cache can leave behind an empty or stale data/ directory).
+function mergeYtCaches(a, b) {
+  a = a || {}; b = b || {};
+  const out = Object.assign({}, a, b);
+  const mergeMap = (left, right, count) => {
+    const merged = Object.assign({}, left || {});
+    for (const [k, rec] of Object.entries(right || {})) {
+      if (!merged[k] || count(rec) >= count(merged[k])) merged[k] = rec;
+    }
+    return merged;
+  };
+  const searchCount = rec => ((rec && rec.items) || []).length;
+  const chanCount = items => (items || []).length;
+  out.searches = mergeMap(a.searches, b.searches, searchCount);
+  out.channelItems = mergeMap(a.channelItems, b.channelItems, chanCount);
+  const ta = Date.parse(a.channelsFetchedAt || '') || 0;
+  const tb = Date.parse(b.channelsFetchedAt || '') || 0;
+  out.channelsFetchedAt = (tb >= ta ? (b.channelsFetchedAt || a.channelsFetchedAt) : a.channelsFetchedAt) || null;
+  if (a.quotaDate && b.quotaDate && a.quotaDate === b.quotaDate) {
+    out.quotaDate = a.quotaDate;
+    out.quotaUsed = Math.max(Number(a.quotaUsed) || 0, Number(b.quotaUsed) || 0);
+  } else if ((Date.parse(b.quotaDate || '') || 0) >= (Date.parse(a.quotaDate || '') || 0) && b.quotaDate) {
+    out.quotaDate = b.quotaDate;
+    out.quotaUsed = Number(b.quotaUsed) || 0;
+  } else if (a.quotaDate) {
+    out.quotaDate = a.quotaDate;
+    out.quotaUsed = Number(a.quotaUsed) || 0;
+  }
+  return out;
+}
+(function loadYtCache() {
+  const seed = readJson(YT_SEED_FILE) || {};
+  const disk = readJson(YT_CACHE_FILE) || {};
+  ytCache = Object.assign(ytCache, mergeYtCaches(seed, disk));
+})();
 function rollQuota() {
   const d = pacificDate();
   if (ytCache.quotaDate !== d) { ytCache.quotaDate = d; ytCache.quotaUsed = 0; }
@@ -278,11 +318,18 @@ async function fetchChannelUploads(channels) {
       at: new Date().toISOString()
     };
   }
-  ytCache.channelItems = byChannel;
+  // Merge into any seeded/cached channel items; never replace a richer cache with a thinner fetch.
+  const merged = Object.assign({}, ytCache.channelItems || {});
+  for (const [channelId, items] of Object.entries(byChannel)) {
+    if (items && items.length && (!(merged[channelId] || []).length || items.length >= merged[channelId].length)) {
+      merged[channelId] = items;
+    }
+  }
+  ytCache.channelItems = merged;
   ytCache.channelsFetchedAt = new Date().toISOString();
   saveYtCache();
   saveCache();
-  return byChannel;
+  return merged;
 }
 
 // Fallback when no API key is configured: public channel RSS (can 404/500 for hours)
