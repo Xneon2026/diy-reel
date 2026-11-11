@@ -6,12 +6,13 @@
 <meta name="theme-color" content="#1a1411">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="DIY Reel">
+<meta name="apple-mobile-web-app-title" content="DIY Reels">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<title>DIY Reel — DIY project videos from everywhere</title>
+<title>DIY Reels — DIY project videos from everywhere</title>
 <style>
 :root{--bg:#15110e;--panel:#211a15;--panel2:#2b221b;--line:#3a2e25;--text:#f6ece2;--muted:#b9a593;--accent:#ff8a3d;--accent2:#ffc46b;
 --yt:#ff3b30;--rd:#ff5700;--tt:#25f4ee;--ig:#e1306c;--pin:#e60023}
@@ -20,7 +21,8 @@ a{color:inherit}
 header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#1a1411 85%,#1a141100);padding:14px 18px 10px}
 .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;max-width:1400px;margin:0 auto}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.5px;white-space:nowrap}
-.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:19px}
+.logo .mark{width:36px;height:36px;border-radius:8px;background:#15110e;display:block;overflow:hidden;flex:none}
+.logo .mark img{width:100%;height:100%;display:block}
 .logo small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);letter-spacing:0}
 .search{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
 .search input{flex:1;background:none;border:0;color:var(--text);font-size:15px;outline:none}
@@ -62,7 +64,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
 <body>
 <header>
   <div class="top">
-    <div class="logo"><div class="mark">🛠️</div><div>DIY Reel<small>Project videos from across social</small></div></div>
+    <div class="logo"><div class="mark"><img src="/icon-192.png" width="36" height="36" alt=""></div><div>DIY Reels<small>Project videos from across social</small></div></div>
     <label class="search">🔎<input id="q" type="search" placeholder="Search YouTube — cricut tumbler, meal prep, weekly meal plan…" autocomplete="off"></label>
     <select id="plat" aria-label="Platform">
       <option value="all">All platforms</option><option value="youtube">YouTube</option><option value="reddit">Reddit</option>
@@ -77,7 +79,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
   <button class="more" id="more" hidden>Load more</button>
 </main>
 <script>
-const CATS = [['all','All'],['cricut','Cricut & Vinyl'],['home','Home Improvement'],['wood','Woodworking'],['crafts','Crafts'],['recipes','Recipes'],['mealplan','Meal Planning'],['mealprep','Meal Prep']];
+const CATS = [['all','All'],['cricut','Cricut & Vinyl'],['home','Home Improvement'],['wood','Woodworking'],['crafts','Crafts'],['yard','Landscaping & Yard'],['recipes','Recipes'],['mealplan','Meal Planning'],['mealprep','Meal Prep']];
 const PLAT = {youtube:'YouTube',reddit:'Reddit',tiktok:'TikTok',instagram:'Instagram',pinterest:'Pinterest'};
 const POSTER = {instagram:'linear-gradient(135deg,#f58529,#dd2a7b,#8134af)',pinterest:'linear-gradient(135deg,#e60023,#8a0015)',youtube:'linear-gradient(135deg,#3a1010,#ff3b30)',reddit:'linear-gradient(135deg,#ff5700,#7a2a00)',tiktok:'linear-gradient(135deg,#111,#25f4ee55)'};
 const params = new URLSearchParams(location.search);

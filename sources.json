@@ -6,7 +6,8 @@
     "crafts": "Crafts",
     "recipes": "Recipes",
     "mealplan": "Meal Planning",
-    "mealprep": "Meal Prep"
+    "mealprep": "Meal Prep",
+    "yard": "Landscaping & Yard"
   },
   "youtubeSearch": {
     "cricut": [
@@ -50,6 +51,13 @@
       "meal prep sunday",
       "beginner meal prep lunches",
       "chicken meal prep bowls"
+    ],
+    "yard": [
+      "landscaping diy backyard",
+      "paver patio diy",
+      "retaining wall diy",
+      "fire pit backyard diy",
+      "raised garden bed diy"
     ]
   },
   "youtube": [
@@ -286,6 +294,42 @@
       "name": "Pinch of Yum",
       "channelId": "UC9ORxqKBywaO7fgflFJzHRw",
       "handle": "@pinchofyum"
+    },
+    {
+      "category": "yard",
+      "name": "Epic Gardening",
+      "channelId": "UCSbyncU597LMwb3HhnAI_4w",
+      "handle": "@EpicGardening"
+    },
+    {
+      "category": "yard",
+      "name": "CaliKim Garden & Home",
+      "channelId": "UCARXOI1UlItgIevoI5jZViQ",
+      "handle": "@CaliKim29"
+    },
+    {
+      "category": "yard",
+      "name": "MIgardener",
+      "channelId": "UCVGVbOl6F5rGF4wSYS6Y5yQ",
+      "handle": "@MIgardener"
+    },
+    {
+      "category": "yard",
+      "name": "The King of DIY",
+      "channelId": "UCM9oZkV3tGJuUUhgZaiGZkQ",
+      "handle": "@TheKingOfDIY"
+    },
+    {
+      "category": "yard",
+      "name": "How To with Doc",
+      "channelId": "UCtpdUcJ3jBHxbkgUzRHuReg",
+      "handle": "@HowToWithDoc"
+    },
+    {
+      "category": "yard",
+      "name": "Ready to DIY",
+      "channelId": "UCTrwZobTdhIzcN8_zBYnivw",
+      "handle": "@ReadyToDIY"
     }
   ],
   "reddit": [
@@ -320,6 +364,14 @@
     {
       "category": "mealplan",
       "subreddit": "EatCheapAndHealthy"
+    },
+    {
+      "category": "yard",
+      "subreddit": "landscaping"
+    },
+    {
+      "category": "yard",
+      "subreddit": "gardening"
     }
   ],
   "embeds": [
@@ -487,6 +539,45 @@
       "category": "mealprep",
       "url": "https://www.pinterest.com/pin/787918897346276256/",
       "title": "One-pan ground turkey caprese from a weekly meal prep plan"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.tiktok.com/@brookeandred/video/7162510831186414891",
+      "title": "No-dig patio and fire pit in one day, under $1000"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.tiktok.com/@mylilarrows/video/7428234509289671967",
+      "title": "Paver patio and fire pit: a 12-day backyard project"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.tiktok.com/@atlantabest/video/7106890829045959982",
+      "title": "DIY paver patio and grill platform from old pavers"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.instagram.com/reel/CsrJtsyKz_K/",
+      "title": "How we built sleeper raised garden beds",
+      "author": "homeofcharl"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.instagram.com/reel/DDfHi7GgmQv/",
+      "title": "How to build a sleeper retaining wall",
+      "author": "Henry Agg"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.instagram.com/reel/DGkYDtGK82L/",
+      "title": "DIY raised garden beds from pallets",
+      "author": "Chloe"
+    },
+    {
+      "category": "yard",
+      "url": "https://www.instagram.com/reel/Cqolj_3ptMb/",
+      "title": "Raised garden bed from concrete blocks",
+      "author": "Monique Nguyen"
     }
   ]
 }

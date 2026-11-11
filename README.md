@@ -1,6 +1,6 @@
-# DIY Reel (prototype)
+# DIY Reels (prototype)
 
-A feed that shows **only DIY project videos** — Cricut & vinyl, home improvement, woodworking, crafts —
+A feed that shows **only DIY project videos** — Cricut & vinyl, home improvement, woodworking, crafts, landscaping & yard, recipes, and meal planning/prep —
 pulled from YouTube, TikTok, Instagram, Pinterest (and Reddit once API access is approved).
 Every video plays inline in the platform's **official embed player**; every card links back to the original post.
 
@@ -16,7 +16,7 @@ Env vars (all optional except YouTube search): `PORT` (default 8787), `REFRESH_M
 `YOUTUBE_API_KEY` (YouTube Data API v3 key — see below),
 `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` (enables Reddit via the official OAuth API).
 
-Endpoints: `/` app · `/api/feed?cat=all|cricut|home|wood|crafts&q=text&platform=youtube|tiktok|instagram|pinterest|reddit`
+Endpoints: `/` app · `/api/feed?cat=all|cricut|home|wood|crafts|yard|recipes|mealplan|mealprep&q=text&platform=youtube|tiktok|instagram|pinterest|reddit`
 · `/api/status` (per-source health + counts) · `POST /api/refresh` (force refresh).
 
 ## How it works

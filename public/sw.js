@@ -1,4 +1,4 @@
-const CACHE = 'diyreel-v3';
+const CACHE = 'diyreel-v4';
 const SHELL = [
   '/',
   '/manifest.webmanifest',
@@ -6,7 +6,8 @@ const SHELL = [
   '/icon-512.png',
   '/icon-512-maskable.png',
   '/apple-touch-icon.png',
-  '/icon.svg'
+  '/favicon.ico',
+  '/favicon-32.png'
 ];
 
 self.addEventListener('install', event => {

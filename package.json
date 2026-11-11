@@ -2,7 +2,7 @@
   "name": "diy-reel",
   "version": "0.1.0",
   "private": true,
-  "description": "DIY project video feed from official embeds and the YouTube Data API",
+  "description": "DIY Reels: a feed of DIY project videos from official embeds and the YouTube Data API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

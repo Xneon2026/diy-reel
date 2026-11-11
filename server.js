@@ -1,4 +1,4 @@
-// DIY Reel — aggregates DIY project videos from official embeds and the YouTube Data API.
+// DIY Reels — aggregates DIY project videos from official embeds and the YouTube Data API.
 // No dependencies: Node 18+ (built-in fetch). Run: node server.js
 const http = require('http');
 const fs = require('fs');
@@ -13,7 +13,7 @@ const ROOT = __dirname;
 const CACHE_FILE = path.join(ROOT, 'data', 'cache.json');
 const YT_CACHE_FILE = path.join(ROOT, 'data', 'yt-cache.json');
 const KEY_FILE = path.join(ROOT, '.youtube_key');
-const UA = 'DIYReel/0.1 (prototype aggregator; contact: owner)';
+const UA = 'DIYReels/0.1 (prototype aggregator; contact: owner)';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const loadSources = () => JSON.parse(fs.readFileSync(path.join(ROOT, 'sources.json'), 'utf8'));
 
@@ -24,7 +24,8 @@ const DEFAULT_YT_QUERIES = {
   crafts: ['diy crafts', 'resin craft'],
   recipes: ['easy dinner recipes', 'family meals', 'sheet pan dinner', 'crockpot slow cooker recipes', 'one pot meals', '30 minute dinner recipes'],
   mealplan: ['weekly meal plan', 'family weekly meal plan', 'meal planning on a budget', '7 day meal plan', 'how to meal plan for the week', 'grocery haul meal plan'],
-  mealprep: ['budget meal prep', 'healthy meal prep for the week', 'high protein meal prep', 'meal prep sunday', 'beginner meal prep lunches', 'chicken meal prep bowls']
+  mealprep: ['budget meal prep', 'healthy meal prep for the week', 'high protein meal prep', 'meal prep sunday', 'beginner meal prep lunches', 'chicken meal prep bowls'],
+  yard: ['landscaping diy backyard', 'paver patio diy', 'retaining wall diy', 'fire pit backyard diy', 'raised garden bed diy']
 };
 
 // ---- YouTube API key: env or .youtube_key, never logged or sent to the client ----
@@ -81,6 +82,7 @@ const CRAFTS_RE = /\b(resin|diy craft|crafts? project|scrapbook|polymer clay|emb
 const MEALPREP_RE = /\b(meal prep|meal-prep|mealprep|prep(?:ped)? meals|lunch prep|sunday meal prep|prep for the week)\b/i;
 const MEALPLAN_RE = /\b(meal plan|meal-plan|mealplan|weekly menu|weekly plan|menu plan|grocery list|plan your meals|7[- ]day meal|meal planning)\b/i;
 const RECIPES_RE = /\b(dinner recipe|easy recipe|healthy recipe|family meal|weeknight dinner|crock[- ]?pot|slow cooker|sheet pan dinner|one[- ]pot (?:dinner|meal)|30[- ]minute (?:dinner|meal)|recipes?)\b/i;
+const YARD_RE = /\b(landscap(?:e|ing)|yard (?:work|project|makeover|design|diy)|backyard (?:makeover|diy|patio|project)|raised (?:garden )?bed|garden bed|paver patio|pavers?|retaining wall|fire pit|lawn care|fence (?:install|post|build)|hardscape|outdoor (?:kitchen|living|diy))\b/i;
 
 function categorize(text, base) {
   const c = new Set();
@@ -92,6 +94,7 @@ function categorize(text, base) {
   if (MEALPREP_RE.test(text || '')) c.add('mealprep');
   if (MEALPLAN_RE.test(text || '')) c.add('mealplan');
   if (RECIPES_RE.test(text || '')) c.add('recipes');
+  if (YARD_RE.test(text || '')) c.add('yard');
   return [...c];
 }
 const tagCats = (base, text) => categorize(text, base);
@@ -104,6 +107,7 @@ function inferCategory(text) {
   if (MEALPREP_RE.test(text || '')) return 'mealprep';
   if (MEALPLAN_RE.test(text || '')) return 'mealplan';
   if (RECIPES_RE.test(text || '')) return 'recipes';
+  if (YARD_RE.test(text || '')) return 'yard';
   return null;
 }
 
@@ -482,7 +486,7 @@ function mix(items) {
   return out;
 }
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json' };
 
 async function handle(req, res) {
   const u = new URL(req.url, 'http://x');
@@ -548,7 +552,7 @@ http.createServer((req, res) => {
     console.error('[http]', redact(err && err.message));
     if (!res.headersSent) { res.writeHead(500, { 'Content-Type': 'application/json' }); res.end('{"error":"internal"}'); }
   });
-}).listen(PORT, () => console.log(`DIY Reel on http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`DIY Reels on http://localhost:${PORT}`));
 
 refresh();
 setInterval(refresh, REFRESH_MIN * 60 * 1000);
