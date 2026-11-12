@@ -1,4 +1,4 @@
-const CACHE = 'diyreel-v4';
+const CACHE = 'diyreel-v5';
 const SHELL = [
   '/',
   '/manifest.webmanifest',
@@ -30,6 +30,15 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
+  // Account and saved-video requests are per-user: never cache them.
+  if (url.pathname.startsWith('/api/auth/') || url.pathname === '/api/saved') return;
+
+  // The app page itself: always try the network first so updates show up right away.
+  if (req.mode === 'navigate' || url.pathname === '/' || url.pathname === '/index.html') {
+    event.respondWith(networkFirst(req));
+    return;
+  }
+
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(networkFirst(req));
     return;
@@ -44,7 +53,7 @@ function networkFirst(req) {
       caches.open(CACHE).then(cache => cache.put(req, copy));
     }
     return res;
-  }).catch(() => caches.match(req));
+  }).catch(() => caches.match(req).then(r => r || caches.match('/')));
 }
 
 function cacheFirst(req) {

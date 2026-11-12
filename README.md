@@ -8,13 +8,19 @@ Every video plays inline in the platform's **official embed player**; every card
 
 ```bash
 cd /workspace/diy-video-app
-node server.js            # Node 18+; no npm install needed (zero dependencies)
+npm install && node server.js   # Node 18+
 # open http://localhost:8787
 ```
 
 Env vars (all optional except YouTube search): `PORT` (default 8787), `REFRESH_MINUTES` (default 30),
 `YOUTUBE_API_KEY` (YouTube Data API v3 key — see below),
 `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` (enables Reddit via the official OAuth API).
+
+Accounts (optional): set `DATABASE_URL` (Neon Postgres; queried over HTTPS with `@neondatabase/serverless`) and
+`SESSION_SECRET` (random string). Users sign up with a username + password (bcrypt-hashed, optional email, no verification),
+get a ♡ save button on every video and a **♥ Saved** tab. Tables (`users`, `sessions`, `saves`) are created on startup.
+Login is rate-limited in memory. Endpoints: `GET /api/auth/me`, `POST /api/auth/signup|login|logout`,
+`GET|POST|DELETE /api/saved` (JSON bodies). Without `DATABASE_URL` the feed works and accounts return 503.
 
 Endpoints: `/` app · `/api/feed?cat=all|cricut|home|wood|crafts|yard|recipes|mealplan|mealprep&q=text&platform=youtube|tiktok|instagram|pinterest|reddit`
 · `/api/status` (per-source health + counts) · `POST /api/refresh` (force refresh).
@@ -118,4 +124,4 @@ TikTok / Instagram / Pinterest / Reddit cards. YouTube Shorts are included and s
 1. Host it publicly (HTTPS needed for PWA install on phones): Render / Railway / Fly.io run `node server.js` as-is;
    or a $5 VPS. Free tiers sleep when idle — fine for a prototype.
 2. Install on phone as a PWA (Add to Home Screen) → feels like an app. Later wrap with Capacitor for App Store / Play Store.
-3. "Mary's picks" — saved/favorite videos, and a Cricut-only mode for her Etsy shop inspiration.
+3. ~~Saved/favorite videos~~ (done: accounts + Saved tab). Still to do: password reset by email, a Cricut-only mode for her Etsy shop inspiration.

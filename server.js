@@ -1,8 +1,9 @@
 // DIY Reels — aggregates DIY project videos from official embeds and the YouTube Data API.
-// No dependencies: Node 18+ (built-in fetch). Run: node server.js
+// Node 18+ (built-in fetch). Accounts/saved videos use Postgres via auth.js. Run: npm install && node server.js
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { handleAuth } = require('./auth');
 
 const PORT = Number(process.env.PORT || 8787);
 const REFRESH_MIN = Number(process.env.REFRESH_MINUTES || 30);
@@ -537,6 +538,7 @@ const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.
 
 async function handle(req, res) {
   const u = new URL(req.url, 'http://x');
+  if (await handleAuth(req, res, u, id => id ? buildFeed().find(i => i.id === id) : null)) return;
   if (u.pathname === '/api/feed') {
     const cat = u.searchParams.get('cat') || 'all';
     const q = (u.searchParams.get('q') || '').trim();
@@ -586,6 +588,7 @@ async function handle(req, res) {
     if (err) { res.writeHead(404); return res.end('not found'); }
     const headers = { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' };
     // Serve the service worker from the site root so it can control the whole app.
+    if (u.pathname === '/' || u.pathname === '/index.html') headers['Cache-Control'] = 'no-cache';
     if (u.pathname === '/sw.js') {
       headers['Service-Worker-Allowed'] = '/';
       headers['Cache-Control'] = 'no-cache';

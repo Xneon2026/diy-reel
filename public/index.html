@@ -57,8 +57,32 @@ main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
 .badge.instagram{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}.badge.pinterest{background:var(--pin)}
 .badge.cat{background:var(--panel2);color:var(--accent2);border:1px solid var(--line)}
 .empty{color:var(--muted);text-align:center;padding:60px 10px}
+.more[hidden]{display:none}
 .more{display:block;margin:10px auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:10px 22px;font-weight:600;cursor:pointer}
 @media (max-width:640px){header{padding:10px 12px 8px}main{padding:4px 12px 40px}.logo{font-size:19px}.top{gap:10px}.search{order:3;flex-basis:100%}.grid{columns:1}}
+.acct{flex:none;margin-left:auto;border:0;border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px;cursor:pointer;background:linear-gradient(135deg,var(--accent),#ff6a2b);color:#1a0f07;white-space:nowrap;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.acct.in{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+.tab.saved{color:var(--accent2)}.tab.saved.on{color:#1a0f07}
+.save{flex:none;border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;padding:3px 10px;font-size:15px;line-height:1.2;cursor:pointer;font-weight:700}
+.save.on{color:#ff5a7a;border-color:#ff5a7a55;background:#ff5a7a14}
+.save:hover{border-color:var(--accent)}
+.acts{display:flex;gap:6px;align-items:center;flex:none}
+.modal{position:fixed;inset:0;z-index:50;background:#000b;display:grid;place-items:center;padding:16px}
+.modal[hidden]{display:none}
+.box{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 20px 18px;position:relative}
+.box h2{margin:0 0 4px;font-size:20px}.box p{margin:0 0 14px;color:var(--muted);font-size:13.5px}
+.box label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+.box input{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:16px;outline:none}
+.box input:focus{border-color:var(--accent)}
+.box .go{width:100%;margin-top:16px;border:0;border-radius:999px;padding:12px;font-weight:800;font-size:15px;cursor:pointer;background:linear-gradient(135deg,var(--accent),#ff6a2b);color:#1a0f07}
+.box .go:disabled{opacity:.6}
+.box .switch{margin-top:12px;text-align:center;font-size:13.5px;color:var(--muted)}
+.box .switch a{color:var(--accent2);cursor:pointer;font-weight:700;text-decoration:underline}
+.box .err{color:#ff8a8a;font-size:13.5px;min-height:18px;margin-top:10px}
+.box .x{position:absolute;top:10px;right:12px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+.box .out{width:100%;margin-top:6px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:999px;padding:11px;font-weight:700;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#2b221b;border:1px solid var(--line);color:var(--text);padding:10px 16px;border-radius:999px;font-size:14px;z-index:60;box-shadow:0 6px 24px #0008}
+@media (max-width:640px){.logo{flex:1 1 0;min-width:0}.logo>div:last-child{min-width:0}.logo small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.acct{order:2;padding:9px 12px;font-size:13.5px;max-width:160px}.search{order:3;flex:1 1 calc(100% - 130px);min-width:0}#plat{order:4;max-width:118px}}
 </style>
 </head>
 <body>
@@ -70,6 +94,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
       <option value="all">All platforms</option><option value="youtube">YouTube</option><option value="reddit">Reddit</option>
       <option value="tiktok">TikTok</option><option value="instagram">Instagram</option><option value="pinterest">Pinterest</option>
     </select>
+    <button class="acct" id="acct" type="button">Log in / Sign up</button>
   </div>
   <nav class="tabs" id="tabs"></nav>
 </header>
@@ -78,12 +103,28 @@ main{max-width:1400px;margin:0 auto;padding:6px 18px 60px}
   <div class="grid" id="grid"></div>
   <button class="more" id="more" hidden>Load more</button>
 </main>
+<div class="modal" id="modal" hidden>
+  <form class="box" id="authForm" autocomplete="on">
+    <button class="x" type="button" id="mx" aria-label="Close">×</button>
+    <h2 id="mTitle">Log in</h2>
+    <p id="mSub">Log in to save videos and see them in your Saved tab.</p>
+    <div id="mFields">
+      <label for="fu">Username</label><input id="fu" name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required minlength="3" maxlength="30">
+      <label for="fp">Password</label><input id="fp" name="password" type="password" autocomplete="current-password" required minlength="8">
+      <div id="emailRow" hidden><label for="fe">Email <span style="opacity:.7">(optional, only for password resets later)</span></label><input id="fe" name="email" type="email" autocomplete="email"></div>
+      <button class="go" id="mGo" type="submit">Log in</button>
+      <div class="err" id="mErr"></div>
+      <div class="switch" id="mSwitch"></div>
+    </div>
+    <div id="mAcct" hidden><button class="out" id="logout" type="button">Log out</button></div>
+  </form>
+</div>
 <script>
 const CATS = [['all','All'],['cricut','Cricut & Vinyl'],['home','Home Improvement'],['wood','Woodworking'],['crafts','Crafts'],['yard','Landscaping & Yard'],['recipes','Recipes'],['mealplan','Meal Planning'],['mealprep','Meal Prep']];
 const PLAT = {youtube:'YouTube',reddit:'Reddit',tiktok:'TikTok',instagram:'Instagram',pinterest:'Pinterest'};
 const POSTER = {instagram:'linear-gradient(135deg,#f58529,#dd2a7b,#8134af)',pinterest:'linear-gradient(135deg,#e60023,#8a0015)',youtube:'linear-gradient(135deg,#3a1010,#ff3b30)',reddit:'linear-gradient(135deg,#ff5700,#7a2a00)',tiktok:'linear-gradient(135deg,#111,#25f4ee55)'};
 const params = new URLSearchParams(location.search);
-const st = { cat: params.get('cat') || 'all', q: params.get('q') || '', plat: 'all', items: [], shown: 0 };
+const st = { cat: params.get('cat') || 'all', q: params.get('q') || '', plat: 'all', items: [], shown: 0, user: null, saved: new Set(), byId: new Map(), pending: null, mode: 'login' };
 const $ = s => document.querySelector(s);
 $('#q').value = st.q;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -92,10 +133,14 @@ const ago = d => { if (!d) return ''; const s = (Date.now() - new Date(d)) / 100
 async function counts(){ try{ const s = await (await fetch('/api/status')).json(); return s.counts; }catch{ return {}; } }
 async function drawTabs(){
   const c = await counts();
-  $('#tabs').innerHTML = CATS.map(([k,l]) => `<button class="tab ${k===st.cat?'on':''}" data-k="${k}">${l}<b>${c[k] ?? ''}</b></button>`).join('');
-  $('#tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { st.cat = b.dataset.k; history.replaceState(null,'',st.cat==='all'?'/':'?cat='+st.cat); drawTabs(); load(); });
+  const tabs = CATS.map(([k,l]) => `<button class="tab ${k===st.cat?'on':''}" data-k="${k}">${l}<b>${c[k] ?? ''}</b></button>`);
+  tabs.splice(1, 0, `<button class="tab saved ${st.cat==='saved'?'on':''}" data-k="saved">♥ Saved<b>${st.user ? st.saved.size : ''}</b></button>`);
+  $('#tabs').innerHTML = tabs.join('');
+  $('#tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { if (b.dataset.k === 'saved' && !st.user) { st.pending = { tab: 'saved' }; return openAuth('login', 'Log in to see your saved videos.'); } st.cat = b.dataset.k; history.replaceState(null,'',st.cat==='all'?'/':'?cat='+st.cat); drawTabs(); load(); });
 }
 function card(it){
+  st.byId.set(it.id, it);
+  const on = st.saved.has(it.id);
   const cat = it.categories.filter(c => c !== 'all').map(c => CATS.find(x => x[0]===c)?.[1]).filter(Boolean)[0];
   let media;
   if (it.thumb) media = `<div class="media" style="aspect-ratio:${it.aspect}"><img loading="lazy" src="${esc(it.thumb)}" alt="" onerror="this.style.display='none'"><div class="play" data-embed="${esc(it.embed)}"><span></span></div></div>`;
@@ -105,7 +150,7 @@ function card(it){
     <div class="badges"><span class="badge ${it.platform}">${PLAT[it.platform]}${it.via==='youtube'?' · via YouTube':''}</span>${cat?`<span class="badge cat">${esc(cat)}</span>`:''}</div>
     <div class="title">${esc(it.title)}</div>
     <div class="row"><a class="creator" href="${esc(it.creatorUrl||it.url)}" target="_blank" rel="noopener">${esc(it.creator)}${it.published?' · '+ago(it.published):''}</a>
-    <a class="orig" href="${esc(it.url)}" target="_blank" rel="noopener">Open ↗</a></div></div></article>`;
+    <span class="acts"><button class="save ${on?'on':''}" type="button" data-id="${esc(it.id)}" aria-label="${on?'Remove from Saved':'Save'}" title="${on?'Saved — tap to remove':'Save'}">${on?'♥':'♡'}</button><a class="orig" href="${esc(it.url)}" target="_blank" rel="noopener">Open ↗</a></span></div></div></article>`;
 }
 function render(){
   const next = st.items.slice(st.shown, st.shown + 24); st.shown += next.length;
@@ -113,14 +158,103 @@ function render(){
   $('#more').hidden = st.shown >= st.items.length;
 }
 async function load(){
+  if (st.cat === 'saved') return loadSaved();
   const p = new URLSearchParams({ cat: st.cat, q: st.q, platform: st.plat });
   const j = await (await fetch('/api/feed?' + p)).json();
+  if (st.cat === 'saved') return;
   st.items = j.items; st.shown = 0; $('#grid').innerHTML = '';
   $('#meta').textContent = `${j.count} videos · updated ${ago(j.lastRefresh) || '—'} · YouTube cached 6h · other sources refresh every 30 min`;
   if (!j.items.length) $('#grid').innerHTML = '<div class="empty">No videos match that yet. Try another search.</div>';
   render();
 }
+async function loadSaved(){
+  $('#grid').innerHTML = ''; $('#more').hidden = true;
+  if (!st.user) { $('#meta').textContent = ''; $('#grid').innerHTML = '<div class="empty">Log in to see your saved videos.</div>'; return; }
+  let j;
+  try { const r = await api('/api/saved'); j = await r.json(); if (!r.ok) throw new Error(j.error); }
+  catch (e) { $('#meta').textContent = ''; $('#grid').innerHTML = `<div class="empty">${esc(e.message || 'Couldn’t load your saved videos.')}</div>`; return; }
+  if (st.cat !== 'saved') return;
+  st.saved = new Set(j.items.map(i => i.id));
+  const ql = st.q.toLowerCase();
+  st.items = j.items.filter(i => (st.plat === 'all' || i.platform === st.plat) && (!ql || `${i.title} ${i.creator}`.toLowerCase().includes(ql)));
+  st.shown = 0;
+  $('#meta').textContent = `${j.count} saved video${j.count === 1 ? '' : 's'} · tap ♥ to remove`;
+  if (!st.items.length) $('#grid').innerHTML = `<div class="empty">${j.count ? 'No saved videos match that.' : 'Nothing saved yet. Tap ♡ on any video to save it here.'}</div>`;
+  render(); updateSavedCount();
+}
+function api(url, opts = {}) {
+  return fetch(url, Object.assign({ credentials: 'same-origin', cache: 'no-store' }, opts, opts.body ? { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(opts.body) } : { headers: { 'Content-Type': 'application/json' } }));
+}
+function toast(msg){ const d = document.createElement('div'); d.className = 'toast'; d.textContent = msg; document.body.appendChild(d); setTimeout(() => d.remove(), 2200); }
+function updateSavedCount(){ const b = document.querySelector('.tab.saved b'); if (b) b.textContent = st.user ? st.saved.size : ''; }
+function drawAcct(){ const b = $('#acct'); if (st.user) { b.textContent = '👤 ' + st.user.username; b.classList.add('in'); b.setAttribute('aria-label', 'Account: ' + st.user.username); } else { b.textContent = 'Log in / Sign up'; b.classList.remove('in'); b.removeAttribute('aria-label'); } }
+function openAuth(mode, sub){
+  st.mode = mode; $('#modal').hidden = false; $('#mErr').textContent = '';
+  const acct = mode === 'account';
+  $('#mFields').hidden = acct; $('#mAcct').hidden = !acct;
+  if (acct) { $('#mTitle').textContent = 'Signed in'; $('#mSub').textContent = 'You’re logged in as ' + st.user.username + '.'; return; }
+  const up = mode === 'signup';
+  $('#mTitle').textContent = up ? 'Create an account' : 'Log in';
+  $('#mSub').textContent = sub || (up ? 'Pick a username and password. No email needed.' : 'Log in to save videos and see them in your Saved tab.');
+  $('#emailRow').hidden = !up; $('#fp').autocomplete = up ? 'new-password' : 'current-password';
+  $('#mGo').textContent = up ? 'Sign up' : 'Log in';
+  $('#mSwitch').innerHTML = up ? 'Already have an account? <a id="sw">Log in</a>' : 'New here? <a id="sw">Create an account</a>';
+  $('#sw').onclick = () => openAuth(up ? 'login' : 'signup', sub);
+  setTimeout(() => $('#fu').focus(), 50);
+}
+function closeAuth(){ $('#modal').hidden = true; st.pending = null; }
+$('#mx').onclick = closeAuth;
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeAuth(); });
+$('#acct').onclick = () => st.user ? openAuth('account') : openAuth('login');
+$('#authForm').onsubmit = async e => {
+  e.preventDefault(); if (st.mode === 'account') return;
+  const up = st.mode === 'signup'; $('#mErr').textContent = ''; $('#mGo').disabled = true;
+  try {
+    const body = { username: $('#fu').value.trim(), password: $('#fp').value };
+    if (up) body.email = $('#fe').value.trim();
+    const r = await api(up ? '/api/auth/signup' : '/api/auth/login', { method: 'POST', body });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { $('#mErr').textContent = j.error || 'Something went wrong. Try again.'; return; }
+    st.user = j.user; $('#fp').value = '';
+    const pending = st.pending; st.pending = null; $('#modal').hidden = true;
+    drawAcct(); await refreshSaved();
+    toast(up ? 'Welcome, ' + st.user.username + '!' : 'Logged in as ' + st.user.username);
+    if (pending && pending.id) await toggleSave(pending.id);
+    if (pending && pending.tab) { st.cat = 'saved'; history.replaceState(null,'','?cat=saved'); drawTabs(); load(); } else syncSaveButtons();
+  } catch { $('#mErr').textContent = 'Couldn’t reach the server. Check your connection.'; }
+  finally { $('#mGo').disabled = false; }
+};
+$('#logout').onclick = async () => {
+  try { await api('/api/auth/logout', { method: 'POST', body: {} }); } catch {}
+  st.user = null; st.saved = new Set(); $('#modal').hidden = true; drawAcct(); toast('Logged out');
+  if (st.cat === 'saved') { st.cat = 'all'; history.replaceState(null,'','/'); load(); } else syncSaveButtons();
+  drawTabs();
+};
+async function refreshSaved(){
+  if (!st.user) { st.saved = new Set(); return; }
+  try { const r = await api('/api/saved'); if (r.ok) { const j = await r.json(); st.saved = new Set(j.items.map(i => i.id)); } } catch {}
+  updateSavedCount();
+}
+function syncSaveButtons(){
+  document.querySelectorAll('.save').forEach(b => { const on = st.saved.has(b.dataset.id); b.classList.toggle('on', on); b.textContent = on ? '♥' : '♡'; b.title = on ? 'Saved — tap to remove' : 'Save'; b.setAttribute('aria-label', on ? 'Remove from Saved' : 'Save'); });
+}
+async function toggleSave(id){
+  const on = st.saved.has(id);
+  if (on) st.saved.delete(id); else st.saved.add(id);
+  syncSaveButtons(); updateSavedCount();
+  try {
+    const r = on ? await api('/api/saved', { method: 'DELETE', body: { id } }) : await api('/api/saved', { method: 'POST', body: { id, item: st.byId.get(id) } });
+    if (r.status === 401) { st.user = null; st.saved = new Set(); drawAcct(); syncSaveButtons(); st.pending = { id }; return openAuth('login', 'Please log in again to save videos.'); }
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error);
+    if (!on) toast('Saved ♥'); else if (st.cat === 'saved') { const c = document.querySelector(`.save[data-id="${CSS.escape(id)}"]`); c && c.closest('.card').remove(); $('#meta').textContent = `${st.saved.size} saved video${st.saved.size === 1 ? '' : 's'} · tap ♥ to remove`; if (!st.saved.size) $('#grid').innerHTML = '<div class="empty">Nothing saved yet. Tap ♡ on any video to save it here.</div>'; }
+  } catch (e) {
+    if (on) st.saved.add(id); else st.saved.delete(id);
+    syncSaveButtons(); updateSavedCount(); toast(e.message || 'Couldn’t save that. Try again.');
+  }
+}
 $('#grid').addEventListener('click', e => {
+  const s = e.target.closest('.save');
+  if (s) { const id = s.dataset.id; if (!st.user) { st.pending = { id }; return openAuth('login', 'Log in or sign up to save videos.'); } return toggleSave(id); }
   const p = e.target.closest('.play'); if (!p) return;
   p.parentElement.innerHTML = `<iframe src="${p.dataset.embed}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
 });
@@ -128,7 +262,12 @@ $('#more').onclick = render;
 new IntersectionObserver(es => es[0].isIntersecting && !$('#more').hidden && render()).observe($('#more'));
 let t; $('#q').oninput = e => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value.trim(); const u = new URL(location.href); if (st.q) u.searchParams.set('q', st.q); else u.searchParams.delete('q'); history.replaceState(null,'',u.pathname + u.search); load(); }, 700); };
 $('#plat').onchange = e => { st.plat = e.target.value; load(); };
-drawTabs(); load();
+(async () => {
+  try { const j = await (await api('/api/auth/me')).json(); st.user = j.user || null; } catch {}
+  drawAcct(); await refreshSaved();
+  if (st.cat === 'saved' && !st.user) st.cat = 'all';
+  drawTabs(); load();
+})();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(()=>{});
 </script>
 </body>
